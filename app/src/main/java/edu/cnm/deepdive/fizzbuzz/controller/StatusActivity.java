@@ -7,6 +7,7 @@ import android.os.Bundle;
 import edu.cnm.deepdive.fizzbuzz.R;
 import edu.cnm.deepdive.fizzbuzz.model.Game;
 import edu.cnm.deepdive.fizzbuzz.model.Round;
+import edu.cnm.deepdive.fizzbuzz.view.RoundAdapter;
 
 public class StatusActivity extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class StatusActivity extends AppCompatActivity {
     roundList = findViewById(R.id.round_list);
     Game game =(Game) getIntent().getSerializableExtra(getString(R.string.game_data_key));
     ArrayAdapter<Round> adapter =
-        new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, game.getRounds());
+        new RoundAdapter(this, game.getRounds());
     roundList.setAdapter(adapter);
   }
 }
