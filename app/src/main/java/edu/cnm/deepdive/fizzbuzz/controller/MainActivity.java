@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.preference.PreferenceManager;
@@ -53,8 +54,8 @@ public class MainActivity extends AppCompatActivity
   private int gameDuration;
   private long gameTimerStart;
   private long gameTimeElapsed;
-  String gameDataKey;
-  String gameTimeElapsedKey;
+  private String gameDataKey;
+  private String gameTimeElapsedKey;
 
   /**
    * Initializes this activity when created, and when restored after {@link #onDestroy()} (for
@@ -81,7 +82,9 @@ public class MainActivity extends AppCompatActivity
       gameTimeElapsed = savedInstanceState.getLong(gameTimeElapsedKey, 0);
     }
     if (game == null) {
+      // TODO Combine invocations of Game constructor.
       game = new Game(timeLimit, numDigits, gameDuration);
+      gameTimeElapsed = 0;
     }
   }
 
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity
   @Override
   protected void onResume() {
     super.onResume();
-    // TODO Resume game if running.
+    // TODO Resume game if running?
   }
 
   /**
@@ -164,6 +167,7 @@ public class MainActivity extends AppCompatActivity
         game = new Game(timeLimit, numDigits, gameDuration);
         gameTimeElapsed = 0;
         complete = false;
+        Toast toast = Toast.makeText(this,(R.string.reset_message), Toast.LENGTH_LONG);
         pauseGame();
         break;
       case R.id.play:
@@ -177,15 +181,20 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
         break;
       case R.id.status:
-        intent = new Intent(this, StatusActivity.class);
-        intent.putExtra(getString(R.string.game_data_key), game);
-        startActivity(intent);
+        showStats();
         break;
       default:
         handled = super.onOptionsItemSelected(item);
         break;
     }
     return handled;
+  }
+
+  private void showStats() {
+    Intent intent;
+    intent = new Intent(this, StatusActivity.class);
+    intent.putExtra(getString(R.string.game_data_key), game);
+    startActivity(intent);
   }
 
   /**
@@ -222,7 +231,9 @@ public class MainActivity extends AppCompatActivity
   public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
     readSettings();
     pauseGame();
+    // TODO Combine invocations of Game constructor.
     game = new Game(timeLimit, numDigits, gameDuration);
+    gameTimeElapsed = 0;
   }
 
   private void readSettings() {
@@ -240,20 +251,19 @@ public class MainActivity extends AppCompatActivity
     stopValueTimer();
     stopGameTimer();
     valueDisplay.setText("");
-    // TODO Update any additional necessary fields.
     invalidateOptionsMenu();
   }
 
   private void resumeGame() {
     running = true;
     if (game == null) {
+      // TODO Combine invocations of Game constructor.
       game = new Game(timeLimit, numDigits, gameDuration);
       gameTimeElapsed = 0;
     }
     updateValue();
     startGameTimer();
     startValueTimer();
-    // TODO Update any additional necessary fields.
     invalidateOptionsMenu();
   }
 
@@ -353,7 +363,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void run() {
       complete = true;
-      runOnUiThread(() -> pauseGame());
+      runOnUiThread(() -> {
+        pauseGame();
+        Toast.makeText(MainActivity.this, "Time's up!", Toast.LENGTH_LONG).show();;
+        showStats();
+      });
     }
 
   }

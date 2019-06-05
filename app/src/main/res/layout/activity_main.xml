@@ -31,6 +31,15 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toTopOf="parent"/>
 
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="3&amp;5"
+    style="@style/DirectionMarker"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
+
   <ImageView
     android:id="@+id/correct_fizz_indicator"
     android:layout_width="100dp"
@@ -54,6 +63,15 @@
     app:layout_constraintRight_toLeftOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"/>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="5"
+    style="@style/DirectionMarker"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
 
   <TextView
     android:id="@+id/value_display"
@@ -88,6 +106,8 @@
     android:id="@+id/incorrect_buzz_indicator"
     android:layout_width="100dp"
     android:layout_height="100dp"
+    android:text="5"
+    style="@style/DirectionMarker"
     android:src="@drawable/incorrect_indicator"
     android:visibility="visible"
     android:alpha="0"
@@ -95,6 +115,14 @@
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"/>
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="3"
+    style="@style/DirectionMarker"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
 
   <ImageView
     android:id="@+id/correct_neither_indicator"
@@ -112,12 +140,23 @@
     android:id="@+id/incorrect_neither_indicator"
     android:layout_width="100dp"
     android:layout_height="100dp"
+    android:text="-"
+    style="@style/DirectionMarker"
     android:src="@drawable/incorrect_indicator"
     android:visibility="visible"
     android:alpha="0"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toBottomOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="&#8212;"
+    style="@style/DirectionMarker"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
