@@ -23,8 +23,9 @@
   <string name="game_time_title">Game duration</string>
   <string name="game_time_summary">Duration of game in seconds</string>
   <string name="status">Current game status</string>
-  <string name="game_time_elapsed_key">game_data</string>
+
   <string name="game_data_key">game_data</string>
+  <string name="game_time_elapsed_key">game_time_elapsed</string>
 
   <string name="fizz">Fizz</string>
   <string name="buzz">Buzz</string>
@@ -39,5 +40,13 @@
 
   <string name="incorrect_description">Incorrect!</string>
   <string name="reset_message">Game reset!</string>
+
+  <string name="fizz_marker">3</string>
+  <string name="buzz_marker">5</string>
+  <string name="fizzbuzz_marker"><![CDATA[3&5]]></string>
+  <string name="neither_marker">&#8212;</string>
+  <string name="time_expired_message">Time\'s up!</string>
+
+  <string name="clock_format">%1$d:%2$04.1f</string>
 
 </resources>
